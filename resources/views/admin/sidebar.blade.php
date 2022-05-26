@@ -53,6 +53,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{url('/storyIndex')}}" class="nav-link">
+            <i class="nav-icon fa fa-pen"></i> 
+            <p>
+             Story
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{url('showfood')}}" class="nav-link">
             <i class="nav-icon fas fa-cheese"></i>
             <p>

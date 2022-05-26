@@ -35,31 +35,24 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|string',
-            'subtitle' => 'required|string',
+        $request->validate([    
             'openingday'=>'required|string',
             'opentime'=>'required|string',
-            'workingimage' => 'required|image',
-            'greatimage' => 'required|image',
-            'description' => 'required|string', 
+            'workingimage' => 'required|image|mimes:jpg,png,jpeg|max:4048',
         ]);
         $abouts = new About;
-        $abouts->title = $request->title;
-        $abouts->subtitle = $request->subtitle;
-        $abouts->description = $request->description;
-        $abouts->openingday = $request->openingday;
-        $abouts->opentime = $request->opentime;
-
-        $workingfile = $request->file('workingimage');
-        Storage::putFile('public/img/', $workingfile);
-        $abouts->workingimage = "storage/img/".$workingfile->hashName();
-
-        $greatfile = $request->file('greatimage');
-        Storage::putFile('public/img/', $greatfile);
-        $abouts->greatimage = "storage/img/".$greatfile->hashName();
+        $abouts->openingday = $request->input('openingday');
+        $abouts->opentime = $request->input('opentime');
+      
+        if($request->hasfile('workingimage'))
+        {
+            $file = $request->file('workingimage');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('uploads/abouts/', $filename);
+            $abouts->workingimage = $filename;
+        }
         $abouts->save();
-
         return redirect()->route('admin.aboutcreate')->with('message','New About Created Successfully');
 
     }
@@ -83,8 +76,8 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $about = About::find($id);
-        return view('admin.aboutedit', compact('about'));
+        $abouts = About::find($id);
+        return view('admin.aboutedit', compact('abouts'));
     }
 
     /**
@@ -96,34 +89,25 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required|string',
-            'subtitle' => 'required|string',
+        $request->validate([    
             'openingday'=>'required|string',
             'opentime'=>'required|string',
-            'workingimage' => 'required|image',
-            'greatimage' => 'required|image',
-            'description' => 'required|string', 
+            'workingimage' => 'required|image|mimes:jpg,png,jpeg|max:4048',
         ]);
         $abouts = About::find($id);
-        $abouts->title = $request->title;
-        $abouts->subtitle = $request->subtitle;
-        $abouts->description = $request->description;
-        $abouts->openingday = $request->openingday;
-        $abouts->opentime = $request->opentime;
 
-        if($request->file('workingimage')){
-            $workingfile = $request->file('workingimage');
-            Storage::putFile('public/img/', $workingfile);
-            $abouts->workingimage = "storage/img/".$workingfile->hashName();
-        }
-        if($request->file('greatimage')){
-            $greatfile = $request->file('greatimage');
-            Storage::putFile('public/img/', $greatfile);
-            $abouts->greatimage = "storage/img/".$greatfile->hashName();
+        $abouts->openingday = $request->input('openingday');
+        $abouts->opentime = $request->input('opentime');
+
+        $image = $request->file;
+        if($image)
+        {
+            $imagename=time().'.'.$image->getClientOriginalExtension();
+            $request->file->move('uploads/abouts/',$imagename);
+            $abouts->image=$imagename;
         }
         $abouts->save();
-
+      
         return redirect()->route('admin.aboutlist')->with('message',' About Updated Successfully');
 
     }
@@ -138,9 +122,8 @@ class AboutController extends Controller
     {
         $about = About::find($id);
         @unlink(public_path($about->workingimage));
-        @unlink(public_path($about->greatimage));
         $about->delete();
 
-        return redirect()->route('admin.aboutlist')->with('message',' About Deleted Successfully');
+        return redirect()->route('admin.aboutlist')->with('message',' About Data Deleted Successfully');
     }
 }

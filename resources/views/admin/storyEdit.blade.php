@@ -23,13 +23,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Edit About </h1>
+            <h1 class="m-0">Edit Story </h1>
           </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
                    
-                    <a class="btn btn-success" href="{{url('aboutlist')}}" role="button">Back</a>
+                    <a class="btn btn-success" href="{{url('storyIndex')}}" role="button">Back</a>
                 </li>
                 
               </ol>
@@ -62,35 +62,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                     @endif
-                <form action="{{route('admin.aboutupdate', $abouts->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.storyupdate', $stories->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                     
                     <div class="card-body">
                         <div class="row">
+                          <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="greatimage">Story Image</label>
+                                <img style="height: 30vh" src="uploads/story/{{$stories->greatimage}}" class="mb-2">
+                            
+                                <input type="file" name="greatimage" class="form-control">
+                            </div>
+                        </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="title">Title</label>
+                                  <input type="text" name="title" class="form-control" id=""  value="{{$stories->title}}">
+                              </div>
+                          </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="workingimage">Working Image</label>
-                                    <img style="height: 30vh" src="uploads/abouts/{{$abouts->workingimage}}" class="mb-2">
-                                    <input type="file" name="workingimage" class="form-control" >
+                                    <label for="subtitle">Subtitle</label>
+                                    <input type="text" name="subtitle" class="form-control" id="" value="{{$stories->subtitle}}">
                                 </div>
                             </div> 
+                             <div class="col-md-6">
+                               <div class="form-group">
+                                 <label for="description">Description</label>
+                                   <textarea name="description" class="form-control"  rows="3" value="{{$stories->description}}">
+                                   </textarea>
+                               </div>
+                             </div>
                           
-                           
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="openingday">Working Day</label>
-                                    <input type="text" name="openingday" class="form-control" value="{{$abouts->openingday}}">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="opentime">Working Time</label>
-                                    <input type="text" name="opentime" class="form-control" value="{{$abouts->opentime}}">
-                                </div>
-                                
-                            </div>
-                          
-                            
                         </div>
                     </div>
                      <!-- /.card-body -->

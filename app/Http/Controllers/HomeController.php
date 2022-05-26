@@ -8,6 +8,7 @@ use App\Models\Food;
 use App\Models\Menu;
 use App\Models\Team;
 use App\Models\Test;
+use App\Models\Story;
 use App\Models\User;
 use App\Models\Booked;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,9 @@ class HomeController extends Controller
                 $menus   = Menu::all();
                 $teams   = Team::all();
                 $tests   = Test::all();
-                return view('user.home',compact('banners','foods','menus','teams','tests'));
+                $story   = Story::all();
+                $about   = About::all();
+                return view('user.home',compact('banners','foods','menus','teams','tests','story','about'));
                 
             }
             else
@@ -58,9 +61,14 @@ class HomeController extends Controller
             $menus   = Menu::all();
             $teams   = Team::all();
             $tests   = Test::all();
-            return view('user.home',compact('banners','foods','menus','teams','tests'));
+            $stories   = Story::find(1);
+            $abouts   = About::find(1);
+            return view('user.home',compact('banners','foods','menus','teams','tests','stories','abouts'));
+            
         }
     }
+   
+
     public function tablebooked(Request $request)
     {
         $data = new Booked();

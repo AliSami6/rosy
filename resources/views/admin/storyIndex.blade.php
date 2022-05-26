@@ -20,13 +20,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">About List</h1>
+            <h1 class="m-0">Story List</h1>
           </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
                    
-                    <a class="btn btn-success" href="{{url('aboutcreate')}}" role="button">Create About</a>
+                    <a class="btn btn-success" href="{{url('storyCreate')}}" role="button">Create Story</a>
                 </li>
                 
               </ol>
@@ -63,40 +63,41 @@
                 <thead>
                   <tr>
                     <th>S/N</th>
-                    <th>Working Day</th>
-                    <th>Working Time</th>
-                    <th>Working Image</th>
+                
+                    <th>Story Image</th>
+                    <th>Title</th>
+                    <th>Subtitle</th>
+                    <th>Description</th>
                     <th>Action</th>
                   </tr>
                 </thead>
 
                 <tbody>
                     
-                        @foreach ($abouts as $about)
+                        @foreach ($stories as $story)
                             <tr>
-                                <td>{{$about->id}}</td>
-                                <td>{{$about->openingday}}</td>
-                                <td>{{$about->opentime}}</td>
+                                <td>{{$story->id}}</td>
+                                <td>{{$story->title}}</td>
+                                <td>{{$story->subtitle}}</td> 
+                                <td>{{$story->description}}</td> 
                                 <td>
-                                    <img height="60" width="80" src="uploads/abouts/{{$about->workingimage}}" alt="Working Image">
+                                    <img height="100" width="100" src="uploads/story/{{$story->greatimage}}" alt="Greate Story Image">
                                 </td> 
-                               
-                                <td>
-                                    
-                                    
-                                    <div class="row">
-                                        <div>
-                                            <a class="btn btn-primary mb-1" href="{{route('admin.aboutedit', $about->id)}}" role="button">Edit</a>
+                              
+                                  <td>
+                                      <div class="row">
+                                        <div class="p-2">
+                                            <a class="btn btn-primary mb-1" href="{{route('admin.storyEdit', $story->id)}}" role="button">Edit</a>
                                         </div>
                                         <div>
-                                            <form action="{{route('admin.aboutdestroy', $about->id)}}" method="POST">
+                                            <form action="{{route('admin.storydestroy', $story->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="submit" name="submit" value="Delete" class="btn btn-danger bg-danger">
                                             </form>
                                         </div>
-                                    </div>
-                                </td>
+                                      </div>
+                                  </td>
                             </tr>
                         @endforeach
                         

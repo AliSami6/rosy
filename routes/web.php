@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,6 +19,7 @@ Route::post('/uploadbanner',[AdminController::class,'uploadbanner']);
 Route::get('/updateviewbanner/{id}',[AdminController::class,'updateviewbanner']);
 Route::post('/updatebanner/{id}',[AdminController::class,'updatebanner']);
 Route::get('/deletebanner/{id}',[AdminController::class,'deletebanner']);
+
 Route::get('/aboutcreate',[App\Http\Controllers\AboutController::class, 'create'])->name('admin.aboutcreate');
 Route::post('/aboutcreate',[App\Http\Controllers\AboutController::class, 'store'])->name('admin.aboutstore');
 Route::get('/aboutlist', [App\Http\Controllers\AboutController::class, 'list'])->name('admin.aboutlist');
@@ -31,6 +33,13 @@ Route::get('/showfood',[AdminController::class,'showfood']);
 Route::get('/deletefood/{id}',[AdminController::class,'deletefood']);
 Route::get('/foodview/{id}',[AdminController::class,'foodview']);
 Route::post('/updatefood/{id}',[AdminController::class,'updatefood']);
+/* story for admin */
+Route::get('/storyCreate',[App\Http\Controllers\StoryController::class, 'create'])->name('admin.storyCreate');
+Route::post('/storyCreate',[App\Http\Controllers\StoryController::class, 'store'])->name('admin.storystore');
+Route::get('/storyIndex', [App\Http\Controllers\StoryController::class, 'list'])->name('admin.storyIndex');
+Route::get('/storyEdit/{id}',[App\Http\Controllers\StoryController::class, 'edit'])->name('admin.storyEdit');
+Route::post('/storyupdate/{id}',[App\Http\Controllers\StoryController::class, 'update'])->name('admin.storyupdate');
+Route::delete('/storydestroy/{id}',[App\Http\Controllers\StoryController::class, 'destroy'])->name('admin.storydestroy');
 // end of featured Menu
 /* Main Menu */
 Route::get('/menu',[AdminController::class,'menu']);

@@ -62,8 +62,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     @endif
                 <form action="{{route('admin.aboutstore')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                    
+                    @csrf
+                      
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -73,26 +73,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="file" name="workingimage" class="form-control" id="" placeholder="Upload Image" required="">
                                 </div>
                             </div> 
-                            <div class="col-md-6">
-
-                                <div class="form-group">
-                                    <label for="greatimage">Greate Image</label>
-                                    <img style="height: 30vh" src="{{asset('assets/imgs/ban_image.jpg')}}" class="mb-2">
-                                    <input type="file" name="greatimage" class="form-control" id="" placeholder="Upload Image" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title" class="form-control" id="" placeholder="Enter About title" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="subtitle">Subtitle</label>
-                                    <input type="text" name="subtitle" class="form-control" id="" placeholder="Enter About Subtitle" required="">
-                                </div>
-                            </div>
                            
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -107,14 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                        <textarea name="description" class="form-control"  rows="5" required="">
-
-                                        </textarea>
-                                </div>
-                            </div>
+                           
                             
                         </div>
                     </div>

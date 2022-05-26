@@ -51,38 +51,38 @@
                 <div class="col-md-6">
                     <h6 class="section-subtitle">Opening Times</h6>
                     <h3 class="section-title">Working Times</h3>
-                    <p class="mb-1 font-weight-bold">Monday - Thursday : <span class="font-weight-normal pl-2 text-muted">7:00 am - 12:00 pm</span></p>
-                    <p class="mb-1 font-weight-bold">Friday - Saturday : <span class="font-weight-normal pl-2 text-muted">7:00 am - Midnight</span></p>
-                    <p class="mb-1 font-weight-bold">Saturday - Sunday : <span class="font-weight-normal pl-2 text-muted">9:00 am - 12:00 pm</span></p>
+                 
+                        <p class="mb-1 font-weight-bold">{{$abouts->openingday}}<span class="font-weight-normal pl-2 text-muted">{{$abouts->opentime}}</span></p>
+                  
+                       
+                  
 
                     <a href="#book-table" class="btn btn-primary btn-sm w-md mt-4">Book a table</a>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
+                       
                         <div class="col">
-                            <img alt="About Image" src="assets/imgs/about-1.jpg" class="w-100 rounded shadow">
+                            <img width="460" height="550" alt="About Image" src="uploads/abouts/{{$abouts->workingimage}}" class="w-100 rounded shadow">
                         </div>
-                        <div class="col">
-                            <img alt="About Image" src="assets/imgs/about-2.jpg" class="w-100 rounded shadow">
-                        </div>
+                     
+                       
                     </div>                  
                 </div>
             </div>
             <div class="section-devider my-6 transparent"></div>
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h6 class="section-subtitle">The Great Story</h6>
-                    <h3 class="section-title">Our Culinary Journey</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic illo a, aut, eum nesciunt obcaecati deserunt ipsam nostrum voluptate recusandae?</p>
+                    <h6 class="section-subtitle">{{$stories->subtitle}}</h6>
+                    <h3 class="section-title">{{$stories->title}}</h3>
+                    <p>{{$stories->description}}</p>
                 </div>
                 <div class="col-md-6 order-1 order-sm-first">
                     <div class="row">
                         <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-3.jpg" class="w-100 rounded shadow">
+                            <img width="460" height="550" alt="story image" src="/uploads/story/{{$stories->greatimage}}" class="w-100 rounded shadow">
                         </div>
-                        <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-4.jpg" class="w-100 rounded shadow">
-                        </div>
+                      
                     </div>                  
                 </div>
             </div>
