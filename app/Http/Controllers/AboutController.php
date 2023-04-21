@@ -14,7 +14,7 @@ class AboutController extends Controller
     public function list()
     {
         $abouts = About::all();
-        return view('admin.aboutlist',compact('abouts'));
+        return view('backend.pages.about.index',compact('abouts'));
     }
 
     /**
@@ -24,7 +24,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return view('admin.aboutcreate');
+        return view('backend.pages.about.create');
     }
 
     /**
@@ -38,19 +38,28 @@ class AboutController extends Controller
         $request->validate([    
             'openingday'=>'required|string',
             'opentime'=>'required|string',
-            'workingimage' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'menutwo' => 'required|image|mimes:jpg,png,jpeg|max:4048',
         ]);
         $abouts = new About;
         $abouts->openingday = $request->input('openingday');
         $abouts->opentime = $request->input('opentime');
       
-        if($request->hasfile('workingimage'))
+        if($request->hasfile('menuone'))
         {
-            $file = $request->file('workingimage');
+            $file = $request->file('menuone');
             $extenstion = $file->getClientOriginalExtension();
             $filename = time().'.'.$extenstion;
             $file->move('uploads/abouts/', $filename);
-            $abouts->workingimage = $filename;
+            $abouts->menuone = $filename;
+        }
+        if($request->hasfile('menutwo'))
+        {
+            $file = $request->file('menutwo');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('uploads/abouts/', $filename);
+            $abouts->menutwo = $filename;
         }
         $abouts->save();
         return redirect()->route('admin.aboutcreate')->with('message','New About Created Successfully');
@@ -77,7 +86,7 @@ class AboutController extends Controller
     public function edit($id)
     {
         $abouts = About::find($id);
-        return view('admin.aboutedit', compact('abouts'));
+        return view('backend.pages.about.edit', compact('abouts'));
     }
 
     /**
@@ -89,10 +98,11 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([    
+         $request->validate([    
             'openingday'=>'required|string',
             'opentime'=>'required|string',
-            'workingimage' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'menutwo' => 'required|image|mimes:jpg,png,jpeg|max:4048',
         ]);
         $abouts = About::find($id);
 

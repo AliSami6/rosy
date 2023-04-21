@@ -28,7 +28,7 @@ class HomeController extends Controller
                 $tests   = Test::all();
                 $story   = Story::all();
                 $about   = About::all();
-                return view('user.home',compact('banners','foods','menus','teams','tests','story','about'));
+                return view('website.pages.home',compact('banners','foods','menus','teams','tests','story','about'));
                 
             }
             else
@@ -37,7 +37,7 @@ class HomeController extends Controller
                 $TotalMenu=Menu::count();
                 $TotalTeams=Team::count();
                 $TotalBooked=Booked::count();
-                return view('admin.home',[
+                return view('backend.pages.dashboard',[
                     'TotalFood'=>$TotalFood,
                     'TotalMenu'=>$TotalMenu,
                     'TotalTeams' =>$TotalTeams,
@@ -63,7 +63,7 @@ class HomeController extends Controller
             $tests   = Test::all();
             $stories   = Story::find(1);
             $abouts   = About::find(1);
-            return view('user.home',compact('banners','foods','menus','teams','tests','stories','abouts'));
+            return view('website.pages.home',compact('banners','foods','menus','teams','tests','stories','abouts'));
             
         }
     }

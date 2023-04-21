@@ -10,7 +10,9 @@ Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verif
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
+Route::get('/master',function(){
+    return view('website.pages.home');
+});
 Route::get('/admin',[AdminController::class,'admin']);
 Route::get('/admin',[AdminController::class,'index'])->name('admin.home');
 Route::get('/banner',[AdminController::class,'banner']);

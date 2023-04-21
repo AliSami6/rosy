@@ -89,7 +89,10 @@
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                             
+                                 <div class="text-gray-400">
+                                  {{ __('Profile') }}
+                            </div>
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -106,7 +109,10 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                   
+                                       <div class="text-gray-400">
+                                  {{ __('Log Out') }}
+                            </div>
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>

@@ -25,7 +25,7 @@ class AdminController extends Controller
                 $TotalMenu=Menu::count();
                 $TotalTeams=Team::count();
                 $TotalBooked=Booked::count();
-                return view('admin.home',[
+                return view('backend.pages.dashboard',[
                     'TotalFood'=>$TotalFood,
                     'TotalMenu'=>$TotalMenu,
                     'TotalTeams' =>$TotalTeams,
@@ -51,7 +51,7 @@ class AdminController extends Controller
         $TotalTeams=Team::count();
         $TotalBooked=Booked::count();
        
-          return view('admin.home',[
+          return view('backend.pages.dashboard',[
             'TotalFood'=>$TotalFood,
             'TotalMenu'=>$TotalMenu,
             'TotalTeams' =>$TotalTeams,
@@ -62,11 +62,11 @@ class AdminController extends Controller
     public function banner()
     {  
         $data = banner::all();
-        return view('admin.banner',compact('data')); 
+        return view('backend.pages.banner.index',compact('data')); 
     }
     public function createbanner()
     {
-        return view('admin.createbanner');
+        return view('backend.pages.banner.create');
     }
     public function uploadbanner(Request $request)
     {
@@ -84,7 +84,7 @@ class AdminController extends Controller
     public function updateviewbanner($id)
     {
         $data = banner::find($id);
-        return view('admin.updateviewbanner',compact('data'));
+        return view('backend.pages.banner.edit',compact('data'));
     }
     public function updatebanner(Request $request,$id)
     {

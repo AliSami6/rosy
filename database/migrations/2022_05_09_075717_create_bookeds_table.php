@@ -15,12 +15,12 @@ class CreateBookedsTable extends Migration
     {
         Schema::create('bookeds', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();          
-            $table->string('phone')->nullable();          
-            $table->string('date')->nullable();
-            $table->string('seats')->nullable();
-            $table->string('status')->nullable();
-            $table->string('user_id')->nullable();
+            $table->string('name');          
+            $table->string('phone');          
+            $table->string('booking_date');
+            $table->integer('seats');
+            $table->enum('status',['0','1']);
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

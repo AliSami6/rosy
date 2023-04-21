@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Pigga landing page.">
     <meta name="author" content="Devcrud">
-    <title>Rosy | Version 2.1</title>
+    <title>@yield('title',env('APP_NAME'))</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Pigga main styles -->
@@ -52,7 +52,7 @@
                     <h6 class="section-subtitle">Opening Times</h6>
                     <h3 class="section-title">Working Times</h3>
                  
-                        <p class="mb-1 font-weight-bold">{{$abouts->openingday}}<span class="font-weight-normal pl-2 text-muted">{{$abouts->opentime}}</span></p>
+                        <p class="mb-1 font-weight-bold"><span class="font-weight-normal pl-2 text-muted"></span></p>
                   
                        
                   
@@ -63,7 +63,7 @@
                     <div class="row">
                        
                         <div class="col">
-                            <img width="460" height="550" alt="About Image" src="uploads/abouts/{{$abouts->workingimage}}" class="w-100 rounded shadow">
+                            <img width="460" height="550" alt="About Image" src="" class="w-100 rounded shadow">
                         </div>
                      
                        
@@ -73,14 +73,14 @@
             <div class="section-devider my-6 transparent"></div>
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h6 class="section-subtitle">{{$stories->subtitle}}</h6>
-                    <h3 class="section-title">{{$stories->title}}</h3>
-                    <p>{{$stories->description}}</p>
+                    <h6 class="section-subtitle"></h6>
+                    <h3 class="section-title"></h3>
+                    <p></p>
                 </div>
                 <div class="col-md-6 order-1 order-sm-first">
                     <div class="row">
                         <div class="col">
-                            <img width="460" height="550" alt="story image" src="/uploads/story/{{$stories->greatimage}}" class="w-100 rounded shadow">
+                            <img width="460" height="550" alt="story image" src="" class="w-100 rounded shadow">
                         </div>
                       
                     </div>                  
@@ -100,15 +100,15 @@
                     <div class="col-md-6 mb-4">
                         <a href="" class="custom-list">
                             <div class="img-holder">
-                                <img src="/Foodimage/{{$food->image}}" alt="Featured Image">
+                                <img src="" alt="Featured Image">
                             </div>
                             <div class="info">
                                 <div class="head clearfix">
-                                    <h5 class="title float-left">{{$food->title}}</h5>
-                                    <p class="float-right text-primary">Tk.{{$food->price}}</p>
+                                    <h5 class="title float-left"></h5>
+                                    <p class="float-right text-primary">Tk.</p>
                                 </div>
                                 <div class="body">
-                                    <p>{{$food->description}}</p>
+                                    <p></p>
                                 </div>
                             </div>
                         </a>
@@ -127,19 +127,19 @@
             <div class="card bg-light">
                 <div class="card-body px-4 pb-4 text-center">                   
                     <div class="row text-left">
-                        @foreach($menus as $menu)
+                       
                         <div class="col-md-6 my-4">
                             <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                       {{$menu->title}}
-                                        <p class="mt-1 mb-0">{{$menu->subtitle}}.</p>
+                                    
+                                        <p class="mt-1 mb-0">.</p>
                                     </div>
-                                    <h6 class="float-right text-primary">Tk.{{$menu->price}}</h6>
+                                    <h6 class="float-right text-primary">Tk.</h6>
                                 </div>
                             </a>
                         </div>
-                        @endforeach
+                     
                     </div>
                     <a href="#book-table" class="btn btn-primary mt-4">Book A Table</a>
                 </div>
@@ -154,12 +154,12 @@
             <h6 class="section-subtitle text-center">Great Team</h6>
             <h3 class="section-title mb-5 text-center">Talented Chefs</h3>
             <div class="row">
-                @foreach($teams as $team)
+                
                 <div class="col-md-4 my-3">
                     <div class="team-wrapper text-center">
-                        <img src="/teamimage/{{$team->image}}" class="circle-120 rounded-circle mb-3 shadow" alt="team image" style="margin: 0 auto">
-                        <h5 class="my-3">{{$team->person_name}}</h5>
-                        <p>{{$team->details}}</p>
+                        <img src="" class="circle-120 rounded-circle mb-3 shadow" alt="team image" style="margin: 0 auto">
+                        <h5 class="my-3"></h5>
+                        <p></p>
                         <h6 class="socials mt-3">
                             <a href="javascript:void(0)" class="px-2"><i class="ti-facebook"></i></a>
                             <a href="javascript:void(0)" class="px-2"><i class="ti-twitter"></i></a>
@@ -168,7 +168,7 @@
                         </h6>
                     </div>
                 </div>
-                @endforeach
+            
             </div>
         </div>
     </section>
@@ -181,22 +181,22 @@
             <h3 class="section-title mb-5 text-center">Testmonials</h3>
 
             <div class="row">
-                @foreach($tests as $test )
+
                 <div class="col-md-4 my-3 my-md-0">
                     <div class="card">
                         <div class="card-body">
                             <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="/testimage/{{$test->image}}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
+                                <img class="mr-3" src="" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
                                 <div class="media-body">
-                                    <h6 class="mt-1 mb-0">{{$test->person_name}}</h6>
-                                    <small class="text-muted mb-0">{{$test->person_title}}</small>     
+                                    <h6 class="mt-1 mb-0"></h6>
+                                    <small class="text-muted mb-0"></small>     
                                 </div>
                             </div>
-                            <p class="mb-0">{{$test->details}}</p>
+                            <p class="mb-0"></p>
                         </div>
                     </div>
                 </div>
-                @endforeach
+               
             </div>
         </div>
     </section>

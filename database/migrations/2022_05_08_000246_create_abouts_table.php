@@ -17,7 +17,8 @@ class CreateAboutsTable extends Migration
             $table->id();
             $table->string('openingday');
             $table->string('opentime');
-            $table->string('workingimage');          
+            $table->string('menuone')->nullable();                
+            $table->string('menutwo')->nullable();                
             $table->timestamps();
         });
     }
