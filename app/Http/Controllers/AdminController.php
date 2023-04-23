@@ -64,10 +64,7 @@ class AdminController extends Controller
         $data = banner::all();
         return view('backend.pages.banner.index',compact('data')); 
     }
-    public function createbanner()
-    {
-        return view('backend.pages.banner.create');
-    }
+  
     public function uploadbanner(Request $request)
     {
         $data = new banner;
@@ -84,7 +81,7 @@ class AdminController extends Controller
     public function updateviewbanner($id)
     {
         $data = banner::find($id);
-        return view('backend.pages.banner.edit',compact('data'));
+        return view('backend.pages.banner.create',compact('data'));
     }
     public function updatebanner(Request $request,$id)
     {
@@ -111,13 +108,19 @@ class AdminController extends Controller
     public function showfood()
     {
         $data = Food::all();
-        return view('admin.showfood',compact('data'));
+        return view('backend.pages.food.index',compact('data'));
+       
+    }
+    public function createfood()
+    {
+     
+        return view('backend.pages.food.create');
        
     }
     public function showMenu()
     {
         $data = Menu::all();
-        return view('admin.showMenu',compact('data'));
+        return view('backend.pages.menu.index',compact('data'));
        
     }
     public function food()
@@ -126,7 +129,7 @@ class AdminController extends Controller
         {
             if(Auth::user()->usertype=='1')
             {
-                return view('admin.food');
+                return view('backend.pages.food.index');
             }
             else
             {
@@ -146,7 +149,7 @@ class AdminController extends Controller
         {
             if(Auth::user()->usertype=='1')
             {
-                return view('admin.menu');
+                return view('backend.pages.menu.index');
             }
             else
             {
@@ -185,15 +188,18 @@ class AdminController extends Controller
         return redirect()->back()->with('message',' Menu Item Added Successfully');
 
     }
+    public function createmenu(){
+        return view('backend.pages.menu.create');
+    }
     public function foodview($id)
     {
         $data = Food::find($id);
-        return view('admin.foodview',compact('data'));
+        return view('backend.pages.food.edit',compact('data'));
     }
     public function menuview($id)
     {
         $data = Menu::find($id);
-        return view('admin.menuview',compact('data'));
+        return view('backend.pages.menu.edit',compact('data'));
     }
     public function updatefood(Request $request,$id)
     {
@@ -241,7 +247,7 @@ class AdminController extends Controller
         {
             if(Auth::user()->usertype=='1')
             {
-                return view('admin.team');
+                return view('backend.pages.team.create');
             }
             else
             {
@@ -260,7 +266,7 @@ class AdminController extends Controller
         {
             if(Auth::user()->usertype=='1')
             {
-                return view('admin.test');
+                return view('backend.pages.testimonial.create');
             }
             else
             {
@@ -302,12 +308,12 @@ class AdminController extends Controller
     public function showteam()
     {
         $data = Team::all();
-        return view('admin.showteam',compact('data'));
+        return view('backend.pages.team.index',compact('data'));
     }
     public function showtest()
     {
         $data = Test::all();
-        return view('admin.showtest',compact('data'));
+        return view('backend.pages.testimonial.index',compact('data'));
     }
     public function deleteteam($id)
     {
@@ -324,12 +330,12 @@ class AdminController extends Controller
     public function updateteam($id)
     {
         $data = Team::find($id);
-        return view('admin.updateteam',compact('data'));
+        return view('backend.pages.team.edit',compact('data'));
     }
     public function updatetest($id)
     {
         $data = Test::find($id);
-        return view('admin.updatetest',compact('data'));
+        return view('backend.pages.testimonial.edit',compact('data'));
     }
     public function updateTeamData(Request $request,$id)
     {
@@ -372,7 +378,7 @@ class AdminController extends Controller
             if(Auth::user()->usertype==1)
             {
                 $data = Booked::all();     
-                return view('admin.showtable',compact('data'));
+                return view('backend.pages.table.index',compact('data'));
             }
             else
             {

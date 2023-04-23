@@ -7,14 +7,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit About </h1>
+                        <h1 class="m-0">Create Food Item</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <a class="btn btn-success" href="{{ url('aboutlist') }}" role="button">Back</a>
-                            </li>
-
+                            <a class="btn btn-success" href="{{ url('showfood') }}" role="button">Back</a>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -46,41 +43,31 @@
                                     </div>
                                 </div>
                             @endif
-                            <form action="{{ route('admin.aboutupdate', $abouts->id) }}" method="post"
-                                enctype="multipart/form-data">
+                            <form action="{{ url('uploadfood') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="workingimage">Working Image </label>
-                                                <img style="height: 30vh" src="uploads/abouts/{{$abouts->menuone}}"
-                                                    class="mb-2">
-                                                <input type="file" name="menuone" class="form-control">
-                                            </div>
-                                        </div>
-                                       
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="closetime">Closing Time</label>
-                                                <input type="time" name="closetime" class="form-control"
-                                                    value="{{ $abouts->closetime }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="opentime">Open Time</label>
-                                                <input type="time" name="opentime" class="form-control"
-                                                    value="{{ $abouts->opentime }}">
-                                            </div>
-
-                                        </div>
-
-
+                                    <div class="form-group">
+                                        <label for="title">Food Name</label>
+                                        <input type="text" name="title" class="form-control" id=""
+                                            placeholder="Enter product title" required="">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" name="price" class="form-control" id=""
+                                            placeholder="Enter Price" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <input type="text" name="description" class="form-control" id=""
+                                            placeholder="Product Description" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="file"> Food Image</label>
+                                        <input type="file" name="file" class="form-control" id=""
+                                            placeholder="Upload Image" required="">
+                                    </div>
+
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">

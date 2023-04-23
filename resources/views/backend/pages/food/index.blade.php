@@ -7,12 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Banner List</h1>
+                        <h1 class="m-0">Featured Food List</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
 
+                                <a class="btn btn-success" href="{{ url('createfood') }}" role="button">Create Food Item</a>
                             </li>
 
                         </ol>
@@ -46,41 +47,46 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="card-body py-3">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
+                            <div class="card-body py-1 m-2">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Food Name</th>
+                                        <th>Description</th>
+                                        <th>Food Image</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($data as $food)
                                         <tr>
-                                            <th>S/N</th>
-                                            <th>Banner Title</th>
-                                            <th>Banner Subtitle</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
+                                            <td>{{ $food->id }}</td>
+                                            <td>{{ $food->title }}</td>
+                                            <td>{{ $food->description }}</td>
+                                            <td>
+                                                <img height="40" width="50" src="/foodimage/{{ $food->image }}"
+                                                    alt="Food Image">
+                                            </td>
+
+                                            <td>{{ $food->price }}</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="{{ url('foodview', $food->id) }}"
+                                                    role="button"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-danger m-1"
+                                                    onclick="return confirm('Are you sure Do you want to delete this!')"
+                                                    href="{{ url('deletefood', $food->id) }}" role="button"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </td>
                                         </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach ($data as $banner)
-                                            <tr>
+                                    @endforeach
 
 
-                                                <td>{{ $banner->id }}</td>
-                                                <td>{{ $banner->title }}</td>
-                                                <td>{{ $banner->subtitle }}</td>
-                                                <td>
-                                                    <img height="100" width="100"
-                                                        src="/bannerimage/{{ $banner->image }}" alt="">
-                                                </td>
-
-                                                <td>
-                                                    <a class="btn btn-primary"
-                                                        href="{{ url('updateviewbanner', $banner->id) }}" role="button"><i
-                                                            class="fas fa-edit"></i></a>
-                                                 
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
                             </div>
                         </div>
                         <!-- /.card -->

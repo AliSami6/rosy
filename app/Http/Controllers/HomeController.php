@@ -62,8 +62,8 @@ class HomeController extends Controller
             $teams   = Team::all();
             $tests   = Test::all();
             $stories   = Story::find(1);
-            $abouts   = About::find(1);
-            return view('website.pages.home',compact('banners','foods','menus','teams','tests','stories','abouts'));
+            $about  = About::find(3);
+            return view('website.pages.home',compact('banners','foods','menus','teams','tests','stories','about'));
             
         }
     }
@@ -74,15 +74,11 @@ class HomeController extends Controller
         $data = new Booked();
         $data->name = $request->name;
         $data->phone = $request->phone;
-        $data->date = $request->date;  
+        $data->booking_date = $request->booking_date;  
         $data->seats = $request->seats;   
         $data->status = 'In progress';
-        if(Auth::id()){
-            $data->user_id = Auth::user()->id;
-        }
-       
         $data->save();
-        return redirect()->back()->with('message',' Table Booked Request Successful'.'We will contact you soon');
+        return redirect()->back()->with('message',' Table Booked Request Successful'.' We will contact you soon');
 
     }
    

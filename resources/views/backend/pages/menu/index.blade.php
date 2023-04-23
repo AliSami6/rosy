@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0"> Banner </h1>
+                        <h1 class="m-0">Main Menu List</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
 
-                                <a class="btn btn-success" href="{{ url('banner') }}" role="button">Back</a>
+                                <a class="btn btn-success" href="{{ url('createmenu') }}" role="button">Create Menu Item</a>
                             </li>
 
                         </ol>
@@ -47,33 +47,41 @@
                                     </div>
                                 </div>
                             @endif
-                            <form action="{{ url('uploadbanner') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="file">Banner Image</label>
-                                        <img style="height: 30vh" src="{{ asset('assets/imgs/ban_image.jpg') }}"
-                                            class="mb-2">
-                                        <input type="file" name="file" class="form-control" 
-                                            placeholder="Upload Image" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Banner Title</label>
-                                        <input type="text" name="title" class="form-control" 
-                                            placeholder="Enter Bannner title" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subtitle">Banner Subtitle</label>
-                                        <input type="text" name="subtitle" class="form-control" id=""
-                                            placeholder="Enter Banner Subtitle" required="">
-                                    </div>
+                            <div class="card-body py-1 m-2">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Menu Title</th>
+                                            <th>Menu Subtitle</th>
+                                            <th>Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
 
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary bg-primary">Submit</button>
-                                </div>
-                            </form>
+                                    <tbody>
+                                        @foreach ($data as $menu)
+                                            <tr>
+                                                <td>{{ $menu->id }}</td>
+                                                <td>{{ $menu->title }}</td>
+                                                <td>{{ $menu->subtitle }}</td>
+                                                <td>{{ $menu->price }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="{{ url('menuview', $menu->id) }}"
+                                                        role="button"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-danger m-1"
+                                                        onclick="return confirm('Are you sure Do you want to delete this!')"
+                                                        href="{{ url('deletemenu', $menu->id) }}" role="button"><i
+                                                            class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>

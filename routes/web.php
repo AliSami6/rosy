@@ -20,16 +20,17 @@ Route::get('/createbanner',[AdminController::class,'createbanner']);
 Route::post('/uploadbanner',[AdminController::class,'uploadbanner']);
 Route::get('/updateviewbanner/{id}',[AdminController::class,'updateviewbanner']);
 Route::post('/updatebanner/{id}',[AdminController::class,'updatebanner']);
-Route::get('/deletebanner/{id}',[AdminController::class,'deletebanner']);
 
+
+Route::get('/aboutlist', [App\Http\Controllers\AboutController::class, 'list'])->name('admin.aboutlist');
 Route::get('/aboutcreate',[App\Http\Controllers\AboutController::class, 'create'])->name('admin.aboutcreate');
 Route::post('/aboutcreate',[App\Http\Controllers\AboutController::class, 'store'])->name('admin.aboutstore');
-Route::get('/aboutlist', [App\Http\Controllers\AboutController::class, 'list'])->name('admin.aboutlist');
 Route::get('/aboutedit/{id}',[App\Http\Controllers\AboutController::class, 'edit'])->name('admin.aboutedit');
 Route::post('/aboutupdate/{id}',[App\Http\Controllers\AboutController::class, 'update'])->name('admin.aboutupdate');
 Route::delete('/aboutdestroy/{id}',[App\Http\Controllers\AboutController::class, 'destroy'])->name('admin.aboutdestroy');
 /* Featured Menu page */
 Route::get('/food',[AdminController::class,'food']);
+Route::get('/createfood',[AdminController::class,'createfood']);
 Route::post('/uploadfood',[AdminController::class,'uploadfood']);
 Route::get('/showfood',[AdminController::class,'showfood']);
 Route::get('/deletefood/{id}',[AdminController::class,'deletefood']);
@@ -45,6 +46,7 @@ Route::delete('/storydestroy/{id}',[App\Http\Controllers\StoryController::class,
 // end of featured Menu
 /* Main Menu */
 Route::get('/menu',[AdminController::class,'menu']);
+Route::get('/createmenu',[AdminController::class,'createmenu']);
 Route::post('/add_menu',[AdminController::class,'add_menu']);
 Route::get('/showMenu',[AdminController::class,'showMenu']);
 Route::get('/deletemenu/{id}',[AdminController::class,'deletemenu']);

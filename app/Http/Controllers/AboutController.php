@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\About;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 class AboutController extends Controller
 {
     /**
@@ -36,13 +36,14 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         $request->validate([    
-            'openingday'=>'required|string',
+        
             'opentime'=>'required|string',
-            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048',
-            'menutwo' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'closetime'=>'required|string',
+            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048'
+          
         ]);
         $abouts = new About;
-        $abouts->openingday = $request->input('openingday');
+        $abouts->closetime = $request->input('closetime');
         $abouts->opentime = $request->input('opentime');
       
         if($request->hasfile('menuone'))
@@ -53,14 +54,7 @@ class AboutController extends Controller
             $file->move('uploads/abouts/', $filename);
             $abouts->menuone = $filename;
         }
-        if($request->hasfile('menutwo'))
-        {
-            $file = $request->file('menutwo');
-            $extenstion = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extenstion;
-            $file->move('uploads/abouts/', $filename);
-            $abouts->menutwo = $filename;
-        }
+       
         $abouts->save();
         return redirect()->route('admin.aboutcreate')->with('message','New About Created Successfully');
 
@@ -99,15 +93,15 @@ class AboutController extends Controller
     public function update(Request $request, $id)
     {
          $request->validate([    
-            'openingday'=>'required|string',
+           
             'opentime'=>'required|string',
-            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048',
-            'menutwo' => 'required|image|mimes:jpg,png,jpeg|max:4048',
+            'closetime'=>'required|string',
+            'menuone' => 'required|image|mimes:jpg,png,jpeg|max:4048'
+            
         ]);
         $abouts = About::find($id);
-
-        $abouts->openingday = $request->input('openingday');
-        $abouts->opentime = $request->input('opentime');
+        $abouts->opentime = $request->opentime;
+        $abouts->closetime =$request->closetime;
 
         $image = $request->file;
         if($image)

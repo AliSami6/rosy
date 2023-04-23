@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0"> Banner </h1>
+                        <h1 class="m-0">All Testimonials</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
 
-                                <a class="btn btn-success" href="{{ url('banner') }}" role="button">Back</a>
+                                <a class="btn btn-success" href="{{ url('addtest') }}" role="button">Create New User</a>
                             </li>
 
                         </ol>
@@ -47,33 +47,44 @@
                                     </div>
                                 </div>
                             @endif
-                            <form action="{{ url('uploadbanner') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="file">Banner Image</label>
-                                        <img style="height: 30vh" src="{{ asset('assets/imgs/ban_image.jpg') }}"
-                                            class="mb-2">
-                                        <input type="file" name="file" class="form-control" 
-                                            placeholder="Upload Image" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Banner Title</label>
-                                        <input type="text" name="title" class="form-control" 
-                                            placeholder="Enter Bannner title" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subtitle">Banner Subtitle</label>
-                                        <input type="text" name="subtitle" class="form-control" id=""
-                                            placeholder="Enter Banner Subtitle" required="">
-                                    </div>
+                            <div class="card-body py-1 m-2">
+                                 <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+				            <th>Person Name</th>
+				            <th>Person Title</th>
+				            <th>Person Details</th>
+                    <th>Person Image</th>
+				            <th>Action</th>
+                  </tr>
+                </thead>
 
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary bg-primary">Submit</button>
-                                </div>
-                            </form>
+                <tbody>
+                   
+                  @foreach($data as $test)
+                                <tr>
+                                    
+                                    <td>{{$test->id}}</td>
+                                    <td>{{$test->person_name}}</td>
+                                    <td>{{$test->person_title}}</td>
+                                    <td>{{$test->details}}</td>
+                                     
+                                    <td>
+                                        <img height="60" width="60" src="/testimage/{{$test->image}}" alt="">
+                                    </td> 
+                                    <td>
+                                        
+                                        <a class="btn btn-primary" href="{{url('updatetest',$test->id)}}" role="button"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger m-1" onclick="return confirm('Are you sure do you want to delete this')"  href="{{url('deletetest',$test->id)}}" role="button" style="margin-top:15px;"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        
+                   
+                </tbody>
+            </table>
+                            </div>
                         </div>
                         <!-- /.card -->
                     </div>

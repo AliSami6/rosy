@@ -7,14 +7,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Create About </h1>
+            <h1 class="m-0">Create Menu Item</h1>
           </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item">
-                    <a class="btn btn-success" href="{{url('aboutlist')}}" role="button">Back</a>
-                </li>
-                
+                <a class="btn btn-success" href="{{url('showMenu')}}" role="button">Back</a>
               </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -45,37 +42,22 @@
                         </div>
                     </div>
                     @endif
-                <form action="{{route('admin.aboutstore')}}" method="post" enctype="multipart/form-data">
+                <form action="{{url('add_menu')}}" method="post" >
                     @csrf
-                      
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="menuone">Working Image </label>
-                                    <img style="height: 30vh" src="{{asset('assets/imgs/ban_image.jpg')}}" class="mb-2">
-                                    <input type="file" name="menuone" class="form-control" id="" placeholder="Upload Image" required="">
-                                </div>
-                            </div> 
-
-                             
-                           
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="openingday">Working Day</label>
-                                    <input type="date" name="openingday" class="form-control" id="" placeholder="Enter Working Day" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="opentime">Working Time</label>
-                                    <input type="time" name="opentime" class="form-control" id="" placeholder="Enter Working Time" required="">
-                                </div>
-                                
-                            </div>
-                           
-                            
+                        <div class="form-group">
+                            <label for="title">Menu Title</label>
+                            <input type="text" name="title" class="form-control" id="" placeholder="Enter Menu title" required="">
                         </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" class="form-control" id="" placeholder="Enter  Menu Price" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="subtitle">Subtitle</label>
+                            <input type="text" name="subtitle" class="form-control" id="" placeholder="Menu Subtitle" required="">
+                        </div>
+                       
                     </div>
                      <!-- /.card-body -->
                     <div class="card-footer">
@@ -90,7 +72,7 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-  
+    <!-- /.content -->
   </div>
 @endsection
 @push('scripts')

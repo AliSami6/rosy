@@ -15,7 +15,7 @@ class StoryController extends Controller
     public function list()
     {
         $stories = Story::all();
-        return view('admin.storyIndex',compact('stories'));
+        return view('backend.pages.story.index',compact('stories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class StoryController extends Controller
      */
     public function create()
     {
-        return view('admin.storyCreate');
+        return view('backend.pages.story.create');
     }
 
     /**
@@ -39,24 +39,25 @@ class StoryController extends Controller
         $request->validate([
             'title' => 'required|string',
             'subtitle' => 'required|string',
-            'greatimage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4048',
+            'storyone' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4048',
             'description' => 'required|string', 
         ]);
+       
         $stories = new Story;
         $stories->title = $request->input('title');
         $stories->subtitle = $request->input('subtitle');
         $stories->description = $request->input('description');
             
-        if($request->hasfile('greatimage'))
+        if($request->hasfile('storyone'))
         {
-            $file = $request->file('greatimage');
+            $file = $request->file('storyone');
             $extenstion = $file->getClientOriginalExtension();
             $filename = time().'.'.$extenstion;
             $file->move('uploads/story/', $filename);
-            $stories->greatimage = $filename;
+            $stories->storyone = $filename;
         }
         $stories->save();
-        return redirect()->route('admin.storyCreate')->with('message','New Story Created Successfully');
+        return redirect()->route('admin.storyIndex')->with('message','New Story Created Successfully');
 
     }
 
@@ -80,7 +81,7 @@ class StoryController extends Controller
     public function edit($id)
     {
         $stories = Story::find($id);
-        return view('admin.storyEdit', compact('stories'));
+        return view('backend.pages.story.edit', compact('stories'));
     }
 
     /**
@@ -95,7 +96,7 @@ class StoryController extends Controller
         $request->validate([
             'title' => 'required|string',
             'subtitle' => 'required|string',
-            'greatimage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4048',
+            'storyone' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4048',
             'description' => 'required|string', 
         ]);
         $stories = Story::find($id);
@@ -125,7 +126,7 @@ class StoryController extends Controller
     public function destroy($id)
     {
         $story = Story::find($id);
-        @unlink(public_path($story->greatimage));
+        @unlink(public_path($story->storyone));
         $story->delete();
 
         return redirect()->route('admin.storyIndex')->with('message',' Story Data Deleted Successfully');

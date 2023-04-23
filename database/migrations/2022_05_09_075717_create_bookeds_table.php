@@ -17,10 +17,10 @@ class CreateBookedsTable extends Migration
             $table->id();
             $table->string('name');          
             $table->string('phone');          
-            $table->string('booking_date');
+            $table->date('booking_date');
             $table->integer('seats');
-            $table->enum('status',['0','1']);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('status');
+           
             $table->timestamps();
         });
     }

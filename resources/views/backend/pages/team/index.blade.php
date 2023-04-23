@@ -7,14 +7,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">About List</h1>
+                        <h1 class="m-0">All Team Members</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
-                                <a class="btn btn-success" href="{{ url('aboutcreate') }}" role="button">Create About</a>
-
-                            </li>
+    
+                    <a class="btn btn-success" href="{{url('addteam')}}" role="button">Create New Member</a>
+               </li>
 
                         </ol>
                     </div><!-- /.col -->
@@ -47,45 +47,36 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="card-body py-1 mt-1">
+                            <div class="card-body py-1 m-2">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Close Time</th>
-                                            <th>Open Time</th>
-                                            <th>Working Image </th>
-
+                                            <th>Person Name</th>
+                                            <th>Person Details</th>
+                                            <th>Person Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
 
-                                        @foreach ($abouts as $about)
+                                        @foreach ($data as $team)
                                             <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ $about->closetime }}</td>
-                                                <td>{{ $about->opentime }}</td>
+                                                <td>{{ $team->id }}</td>
+                                                <td>{{ $team->person_name }}</td>
+                                                <td>{{ $team->details }}</td>
                                                 <td>
-                                                    <img height="60" width="80"
-                                                        src="uploads/abouts/{{ $about->menuone }}" alt="Working Image">
+                                                    <img height="60" width="60" src="/teamimage/{{ $team->image }}"
+                                                        alt="">
                                                 </td>
-
-
                                                 <td>
-
-
-                                                    <div class="row justify-content-center">
-                                                        <div class="">
-                                                            <a class="btn btn-primary mb-1"
-                                                                href="{{ route('admin.aboutedit', $about->id) }}"
-                                                                role="button"><i class="fas fa-edit"></i></a>
-                                                        </div>
-                                                        <div>
-                                                          
-                                                        </div>
-                                                    </div>
+                                                    <a class="btn btn-primary" href="{{ url('updateteam', $team->id) }}"
+                                                        role="button"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-danger m-1"
+                                                        onclick="return confirm('Are you sure Do you want to delete this!')"
+                                                        href="{{ url('deleteteam', $team->id) }}" role="button"><i
+                                                            class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
