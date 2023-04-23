@@ -50,12 +50,7 @@
                          <a href="{{ route('login') }}"
                              class="btn btn-primary btn-sm text-sm text-gray-700 dark:text-dark-500 underline">Log in</a>
                      </li>
-                     @if (Route::has('register'))
-                         <li class="nav-item">
-                             <a href="{{ route('register') }}"
-                                 class="btn btn-primary btn-sm ml-4 text-sm text-gray-700 dark:text-dark-500 underline">Register</a>
-                         </li>
-                     @endif
+                    
                  @endauth
                  @endif
                  </li>
